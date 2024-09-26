@@ -65,4 +65,14 @@ if (isset($response['access_token']) && !empty($response['access_token'])) {
     exit('Invalid access token! Please try again later!');
 }
 
+
+// Authenticate the user
+session_regenerate_id();
+$_SESSION['google_loggedin'] = TRUE;
+$_SESSION['google_email'] = $profile['email'];
+$_SESSION['google_name'] = implode(' ', $google_name_parts);
+$_SESSION['google_picture'] = isset($profile['picture']) ? $profile['picture'] : '';
+
+
+
 ?>
